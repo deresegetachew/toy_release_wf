@@ -13,10 +13,8 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v2
-      - name: Set Release Tag as env
-        run: echo ::set-env name=RELEASE_VERSION::$(echo ${GITHUB_REF:10})
       - name: Create a release branch
-        run: git checkout -b release/${{GITHUB_REF}}
+        run: git checkout -b release/${{githb.ref_name}}
       - name: Push new branch
-        run: git push origin release/${{GITHUB_REF}}
+        run: git push origin release/${{github.ref_name}}
       
