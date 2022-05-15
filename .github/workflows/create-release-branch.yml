@@ -4,6 +4,8 @@ name: 'Release'
 on:
   release:
     types: [released]
+    branches:
+      - main
   workflow_dispatch: null
 
 # Automated Jobs
