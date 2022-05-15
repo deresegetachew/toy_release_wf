@@ -8,7 +8,7 @@ on:
 
 # Automated Jobs
 jobs:
-  deploy-staging:
+  crete_branch:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
@@ -16,7 +16,7 @@ jobs:
       - name: Set Release Tag as env
         run: echo ::set-env name=RELEASE_VERSION::$(echo ${GITHUB_REF:10})
       - name: Create a release branch
-        run: git checkout -b release/${{RELEASE_VERSION}}
+        run: git checkout -b release/${{GITHUB_REF}}
       - name: Push new branch
-        run: git push origin release/${{RELEASE_VERSION}}
+        run: git push origin release/${{GITHUB_REF}}
       
