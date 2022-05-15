@@ -1,0 +1,23 @@
+# Name of the workflow
+name: 'Release'
+# pre-release releases
+on:
+  release:
+		types: [released]
+  workflow_dispatch: null
+
+# Automated Jobs
+jobs:
+
+  deploy-staging:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+			- name: Set Release Tag as env
+        run: echo ::set-env name=RELEASE_VERSION::$(echo ${GITHUB_REF:10})
+      - name: Create a release branch
+        run: git checkout -b release/${{RELEASE_VERSION}}
+  		- name: Push new branch
+     	 	run: git push origin release/${{RELEASE_VERSION}}
+      
