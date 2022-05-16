@@ -3,7 +3,7 @@ name: 'Release'
 # pre-release releases
 on:
   release:
-    types: [released]
+    types: [released,published]
     branches:
       - main
   workflow_dispatch: null
@@ -15,8 +15,10 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v2
-      - name: Create a release branch
-        run: git checkout -b release/${{github.ref_name}}
-      - name: Push new branch
-        run: git push origin release/${{github.ref_name}}
+      - name: echo message
+        run: echo "Hey"
+#       - name: Create a release branch
+#         run: git checkout -b release/${{github.ref_name}}
+#       - name: Push new branch
+#         run: git push origin release/${{github.ref_name}}
       
